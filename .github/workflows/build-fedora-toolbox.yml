@@ -37,7 +37,7 @@ jobs:
           flavor: |
             latest=true
           tags: |
-            type=sha
+            type=sha,format=long
 
       - name: Build and push Docker image
         id: push
