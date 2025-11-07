@@ -62,6 +62,21 @@ RUN wget --no-hsts --quiet https://github.com/zellij-org/zellij/releases/downloa
     tar -xf /tmp/zellij.tar.gz -C /usr/local/bin && \
     chmod +x /usr/local/bin/zellij && \
     rm /tmp/zellij.tar.gz
+# Add rust/cargo and selene/stylua. Need to install once the $USER exists to get proper permissions
+RUN cat > /etc/profile.d/rust.sh <<'EOF'
+#!/bin/bash
+# Check if current user is NOT root
+if [ "$EUID" -ne 0 ]; then
+    # Check if cargo is NOT installed
+    if [ ! -f "${HOME}/.cargo/bin/cargo" ]; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y && \
+            . ${HOME}/.cargo/env && \
+            cargo install selene stylua
+    else
+        . ${HOME}/.cargo/env
+    fi
+fi
+EOF
 
 ENTRYPOINT ["tini", "--"]
 CMD [ "/bin/bash" ]
