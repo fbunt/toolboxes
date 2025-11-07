@@ -53,6 +53,7 @@ RUN dnf -y copr enable atim/starship > /dev/null && \
         tini \
         vim \
         wget \
+        wl-clipboard \
         xclip \
         zoxide \
         zstd \
