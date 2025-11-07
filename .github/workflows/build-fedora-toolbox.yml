@@ -4,6 +4,8 @@ on:
   push:
     branches: ['main']
   workflow_dispatch:
+  schedule:
+    - cron: '3 14 * * 1,4'  # Every Monday and Thursday at 3:14am
 
 env:
   REGISTRY: ghcr.io/${{ github.repository_owner }}
