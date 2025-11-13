@@ -42,7 +42,7 @@ RUN dnf -y copr enable atim/starship > /dev/null && \
         make \
         ncdu \
         neovim \
-        nodejs \
+        nodejs-npm \
         openssh-server \
         parallel \
         pv \
