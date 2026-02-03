@@ -28,6 +28,7 @@ RUN dnf -y upgrade > /dev/null && \
 # Add tools
 RUN dnf -y copr enable atim/starship > /dev/null && \
     dnf -y install --setopt=install_weak_deps=False \
+        ImageMagick \
         automake \
         clang \
         clang-tools-extra \
