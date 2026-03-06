@@ -38,6 +38,7 @@ RUN dnf -y copr enable atim/starship > /dev/null && \
         gcc-c++ \
         git \
         htop \
+        jq \
         kernel-devel \
         keychain \
         make \
