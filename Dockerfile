@@ -67,6 +67,8 @@ RUN wget --no-hsts --quiet https://github.com/zellij-org/zellij/releases/downloa
     tar -xf /tmp/zellij.tar.gz -C /usr/local/bin && \
     chmod +x /usr/local/bin/zellij && \
     rm /tmp/zellij.tar.gz
+# Add uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 # Add rust/cargo and selene/stylua. Need to install once the $USER exists to get proper permissions
 RUN cat > /etc/profile.d/rust.sh <<'EOF'
 #!/bin/bash
