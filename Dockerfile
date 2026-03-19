@@ -34,6 +34,7 @@ RUN dnf -y copr enable atim/starship > /dev/null && \
         clang-tools-extra \
         cmake \
         fd-find \
+        ffmpeg \
         gcc \
         gcc-c++ \
         git \
