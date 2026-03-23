@@ -88,5 +88,8 @@ if [ "$EUID" -ne 0 ]; then
 fi
 EOF
 
+# Enable host podman
+RUN ln -s /usr/bin/distrobox-host-exec /usr/local/bin/podman
+
 ENTRYPOINT ["tini", "--"]
 CMD [ "/bin/bash" ]
