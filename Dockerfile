@@ -39,6 +39,7 @@ RUN dnf -y copr enable atim/starship > /dev/null && \
         fuse-libs \
         gcc \
         gcc-c++ \
+        gh \
         git \
         htop \
         jq \
