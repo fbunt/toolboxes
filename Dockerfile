@@ -58,6 +58,7 @@ RUN dnf -y copr enable atim/starship > /dev/null && \
         starship \
         stow \
         tini \
+        tree-sitter-cli \
         vim \
         wget \
         wl-clipboard \
