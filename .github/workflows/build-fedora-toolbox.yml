@@ -5,7 +5,7 @@ on:
     branches: ['main']
   workflow_dispatch:
   schedule:
-    - cron: '3 14 * * 1,4'  # Every Monday and Thursday at 3:14am
+    - cron: '17 7 * * 1'  # Weekly, Monday 07:17 UTC (overnight in US Mountain time)
 
 env:
   REGISTRY: ghcr.io/${{ github.repository_owner }}
