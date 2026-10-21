@@ -96,5 +96,17 @@ EOF
 # Enable host podman
 RUN ln -s /usr/bin/distrobox-host-exec /usr/local/bin/podman
 
+# Distrust emSign ECC Root CA - G3 (eMudhra intermediate key compromise) until
+# Fedora's ca-certificates drops it. Conda, uv, pixi and Node ship their own
+# root bundles, so point them at the system bundle, which honours the blocklist.
+RUN trust extract --format=pem-bundle \
+        --filter='pkcs11:id=%7C%5D%02%84%13%D4%CC%8A%9B%81%CE%17%1C%2E%29%1E%9C%48%63%42;type=cert' \
+        /etc/pki/ca-trust/source/blocklist/emsign-ecc-g3.pem && \
+    { [ -s /etc/pki/ca-trust/source/blocklist/emsign-ecc-g3.pem ] || \
+        echo "emSign ECC Root CA - G3 is no longer shipped; this block can be removed"; } && \
+    update-ca-trust
+ENV SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem \
+    NODE_OPTIONS=--use-openssl-ca
+
 ENTRYPOINT ["tini", "--"]
 CMD [ "/bin/bash" ]
